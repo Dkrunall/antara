@@ -45,10 +45,10 @@ export default function Home() {
         {/* Hero Image Section */}
         <section className="relative w-full aspect-[3/4] sm:aspect-square border-b border-foreground flex flex-col justify-end p-4 group">
           <Image
-            src="/PAN09463.jpg"
+            src="/PAN09393.jpg"
             alt="Cyberpunk Alleyway"
             fill
-            className="object-cover absolute inset-0 z-0 grayscale-[50%] contrast-125 brightness-[60%] mix-blend-screen object-top"
+            className="object-cover absolute inset-0 z-0 grayscale contrast-125 brightness-[60%] mix-blend-screen object-top"
             priority
           />
           {/* Decorative Overlays */}

@@ -6,7 +6,6 @@ export default function Preloader() {
     const [phase, setPhase] = useState<"loading" | "prompt" | "hidden">("loading");
     const [progress, setProgress] = useState(0);
     const [isFading, setIsFading] = useState(false);
-    const [playSpotify, setPlaySpotify] = useState(false);
 
     // Prevent scrolling when preloader is open
     useEffect(() => {
@@ -42,7 +41,11 @@ export default function Preloader() {
         setIsFading(true);
 
         if (withMusic) {
-            setPlaySpotify(true);
+            const audio = document.getElementById("bg-music") as HTMLAudioElement;
+            if (audio) {
+                audio.volume = 0.5;
+                audio.play().catch(e => console.log("Audio play failed:", e));
+            }
         }
 
         setTimeout(() => {
@@ -50,36 +53,11 @@ export default function Preloader() {
         }, 800); // Duration of the fade out
     };
 
-    if (phase === "hidden") {
-        if (!playSpotify) return null;
-        return (
-            <div className="fixed bottom-0 left-0 w-0 h-0 opacity-0 pointer-events-none overflow-hidden z-50" aria-hidden="true">
-                <iframe
-                    src="https://open.spotify.com/embed/track/4E1VOXgf6VMkPH6NeF3Xou?utm_source=generator&theme=0&autoplay=1"
-                    width="100%"
-                    height="152"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy">
-                </iframe>
-            </div>
-        );
-    }
+    if (phase === "hidden") return null;
 
     return (
         <>
-            {playSpotify && (
-                <div className="fixed bottom-0 left-0 w-0 h-0 opacity-0 pointer-events-none overflow-hidden z-50" aria-hidden="true">
-                    <iframe
-                        src="https://open.spotify.com/embed/track/4E1VOXgf6VMkPH6NeF3Xou?utm_source=generator&theme=0&autoplay=1"
-                        width="100%"
-                        height="152"
-                        frameBorder="0"
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        loading="lazy">
-                    </iframe>
-                </div>
-            )}
+            <audio id="bg-music" loop src="/Pico De Amor.mp3" preload="auto" />
 
             <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background text-foreground transition-opacity duration-700 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
 
