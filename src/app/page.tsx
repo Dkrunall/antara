@@ -326,7 +326,7 @@ export default function Home() {
           />
           <div className="absolute inset-0 z-10 border-[0.5px] border-foreground/30 m-6 sm:m-12 rounded-[60px] pointer-events-none mix-blend-overlay"></div>
 
-          <div className="z-20 font-display text-4xl sm:text-7xl font-bold uppercase tracking-widest text-[#d8e3ce] drop-shadow-[0_0_15px_rgba(216,227,206,0.5)]" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+          <div className="hidden sm:block z-20 font-display text-4xl sm:text-7xl font-bold uppercase tracking-widest text-[#d8e3ce] drop-shadow-[0_0_15px_rgba(216,227,206,0.5)]" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
             UP TO SPEED
           </div>
 

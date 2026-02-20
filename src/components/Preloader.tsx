@@ -53,88 +53,88 @@ export default function Preloader() {
         }, 800); // Duration of the fade out
     };
 
-    if (phase === "hidden") return null;
-
     return (
         <>
             <audio id="bg-music" loop src="/Pico De Amor.mp3" preload="auto" />
 
-            <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background text-foreground transition-opacity duration-700 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+            {phase !== "hidden" && (
+                <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background text-foreground transition-opacity duration-700 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
 
-                {/* Subtle background overlay & borders */}
-                <div className="absolute inset-0 bg-dark-surface/50 pointer-events-none z-0"></div>
-                <div className="absolute inset-4 border border-foreground/30 pointer-events-none z-0"></div>
-                <div className="absolute inset-0 border-[6px] border-foreground pointer-events-none z-0"></div>
+                    {/* Subtle background overlay & borders */}
+                    <div className="absolute inset-0 bg-dark-surface/50 pointer-events-none z-0"></div>
+                    <div className="absolute inset-4 border border-foreground/30 pointer-events-none z-0"></div>
+                    <div className="absolute inset-0 border-[6px] border-foreground pointer-events-none z-0"></div>
 
-                {/* Scanline effect */}
-                <div className="absolute inset-0 z-0 pointer-events-none opacity-5 mix-blend-overlay" style={{ backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 255, 255, 0.5) 50%)', backgroundSize: '100% 4px' }}></div>
+                    {/* Scanline effect */}
+                    <div className="absolute inset-0 z-0 pointer-events-none opacity-5 mix-blend-overlay" style={{ backgroundImage: 'linear-gradient(transparent 50%, rgba(255, 255, 255, 0.5) 50%)', backgroundSize: '100% 4px' }}></div>
 
-                <div className="flex flex-col items-center justify-center h-full w-full max-w-5xl px-4 relative z-10 transition-all duration-500">
+                    <div className="flex flex-col items-center justify-center h-full w-full max-w-5xl px-4 relative z-10 transition-all duration-500">
 
-                    {/* Cyberpunk corner markers */}
-                    <div className="absolute top-8 left-8 font-mono text-[10px] uppercase tracking-widest opacity-60 hidden sm:block border-l-2 pl-2 border-foreground">
-                        C9DE // SYS.INIT<br />
-                        {phase === "loading" ? "INITIALIZING..." : "AWAITING INPUT"}
-                    </div>
-                    <div className="absolute top-8 right-8 font-mono text-[10px] uppercase tracking-widest opacity-60 hidden sm:block text-right border-r-2 pr-2 border-foreground">
-                        BPM: 126.0<br />
-                        [STANDBY]
-                    </div>
-
-                    {/* LOADING PHASE */}
-                    <div className={`absolute flex flex-col items-center justify-center transition-opacity duration-500 ${phase === "loading" ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                        <div className="font-display text-3xl sm:text-6xl font-black tracking-widest uppercase mb-8 relative drop-shadow-md animate-pulse scale-x-125 origin-center">
-                            ANTARA
+                        {/* Cyberpunk corner markers */}
+                        <div className="absolute top-8 left-8 font-mono text-[10px] uppercase tracking-widest opacity-60 hidden sm:block border-l-2 pl-2 border-foreground">
+                            C9DE // SYS.INIT<br />
+                            {phase === "loading" ? "INITIALIZING..." : "AWAITING INPUT"}
+                        </div>
+                        <div className="absolute top-8 right-8 font-mono text-[10px] uppercase tracking-widest opacity-60 hidden sm:block text-right border-r-2 pr-2 border-foreground">
+                            BPM: 126.0<br />
+                            [STANDBY]
                         </div>
 
-                        <div className="w-64 max-w-[80vw] h-1 bg-foreground/20 relative mb-4">
-                            <div className="absolute top-0 left-0 h-full bg-foreground transition-all duration-150 ease-out shadow-[0_0_10px_var(--color-foreground)]" style={{ width: `${progress}%` }}></div>
-                        </div>
-
-                        <div className="font-mono text-[10px] uppercase tracking-widest opacity-80 flex justify-between w-64 max-w-[80vw]">
-                            <span>LOADING ASSETS...</span>
-                            <span>{progress}%</span>
-                        </div>
-                    </div>
-
-                    {/* PROMPT PHASE */}
-                    <div className={`flex flex-col items-center justify-center w-full transition-all duration-700 transform ${phase === "prompt" ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95 pointer-events-none'}`}>
-                        {/* Massive ANTARA Logo */}
-                        <div className="w-full flex justify-center mb-12 sm:mb-24 scale-x-110 sm:scale-x-150 origin-center">
-                            <h1 className="font-display text-4xl sm:text-7xl md:text-9xl font-black tracking-widest uppercase relative drop-shadow-md">
+                        {/* LOADING PHASE */}
+                        <div className={`absolute flex flex-col items-center justify-center transition-opacity duration-500 ${phase === "loading" ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                            <div className="font-display text-3xl sm:text-6xl font-black tracking-widest uppercase mb-8 relative drop-shadow-md animate-pulse scale-x-125 origin-center">
                                 ANTARA
-                            </h1>
+                            </div>
+
+                            <div className="w-64 max-w-[80vw] h-1 bg-foreground/20 relative mb-4">
+                                <div className="absolute top-0 left-0 h-full bg-foreground transition-all duration-150 ease-out shadow-[0_0_10px_var(--color-foreground)]" style={{ width: `${progress}%` }}></div>
+                            </div>
+
+                            <div className="font-mono text-[10px] uppercase tracking-widest opacity-80 flex justify-between w-64 max-w-[80vw]">
+                                <span>LOADING ASSETS...</span>
+                                <span>{progress}%</span>
+                            </div>
                         </div>
 
-                        <p className="font-mono text-xs sm:text-sm uppercase tracking-widest opacity-80 mb-8 border-b border-foreground/50 pb-2 px-8">
-                            Select Sensory Experience
-                        </p>
+                        {/* PROMPT PHASE */}
+                        <div className={`flex flex-col items-center justify-center w-full transition-all duration-700 transform ${phase === "prompt" ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95 pointer-events-none'}`}>
+                            {/* Massive ANTARA Logo */}
+                            <div className="w-full flex justify-center mb-12 sm:mb-24 scale-x-110 sm:scale-x-150 origin-center">
+                                <h1 className="font-display text-4xl sm:text-7xl md:text-9xl font-black tracking-widest uppercase relative drop-shadow-md">
+                                    ANTARA
+                                </h1>
+                            </div>
 
-                        {/* Prompt Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-xl justify-center px-4 sm:px-0">
-                            <button
-                                onClick={() => handleEnter(true)}
-                                className="group relative px-4 sm:px-8 py-4 bg-foreground text-background font-bold tracking-widest uppercase text-[10px] sm:text-xs transition-all hover:bg-[#c8d4b8] cursor-crosshair overflow-hidden shadow-[4px_4px_0_rgba(0,0,0,0.5)] active:shadow-none active:translate-y-1 active:translate-x-1"
-                            >
-                                <span className="relative z-10 font-mono">CONTINUE WITH MUSIC</span>
-                                <div className="absolute inset-0 bg-background mix-blend-difference group-hover:scale-y-0 transition-transform origin-top duration-300 pointer-events-none opacity-20"></div>
-                            </button>
+                            <p className="font-mono text-xs sm:text-sm uppercase tracking-widest opacity-80 mb-8 border-b border-foreground/50 pb-2 px-8">
+                                Select Sensory Experience
+                            </p>
 
-                            <button
-                                onClick={() => handleEnter(false)}
-                                className="group relative px-4 sm:px-8 py-4 bg-transparent text-foreground font-bold tracking-widest uppercase text-[10px] sm:text-xs border border-foreground transition-all hover:bg-dark-surface cursor-crosshair overflow-hidden"
-                            >
-                                <span className="relative z-10 font-mono opacity-80 group-hover:opacity-100">CONTINUE WITHOUT MUSIC</span>
-                            </button>
+                            {/* Prompt Buttons */}
+                            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-xl justify-center px-4 sm:px-0">
+                                <button
+                                    onClick={() => handleEnter(true)}
+                                    className="group relative px-4 sm:px-8 py-4 bg-foreground text-background font-bold tracking-widest uppercase text-[10px] sm:text-xs transition-all hover:bg-[#c8d4b8] cursor-crosshair overflow-hidden shadow-[4px_4px_0_rgba(0,0,0,0.5)] active:shadow-none active:translate-y-1 active:translate-x-1"
+                                >
+                                    <span className="relative z-10 font-mono">CONTINUE WITH MUSIC</span>
+                                    <div className="absolute inset-0 bg-background mix-blend-difference group-hover:scale-y-0 transition-transform origin-top duration-300 pointer-events-none opacity-20"></div>
+                                </button>
+
+                                <button
+                                    onClick={() => handleEnter(false)}
+                                    className="group relative px-4 sm:px-8 py-4 bg-transparent text-foreground font-bold tracking-widest uppercase text-[10px] sm:text-xs border border-foreground transition-all hover:bg-dark-surface cursor-crosshair overflow-hidden"
+                                >
+                                    <span className="relative z-10 font-mono opacity-80 group-hover:opacity-100">CONTINUE WITHOUT MUSIC</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Small bottom text */}
-                    <div className="absolute bottom-6 sm:bottom-8 font-mono text-[8px] sm:text-[10px] uppercase tracking-widest opacity-50 text-center w-full px-4">
-                        SYS.REV 014 // PLEASE VERIFY SENSORY PREFERENCE TO INITIALIZE
+                        {/* Small bottom text */}
+                        <div className="absolute bottom-6 sm:bottom-8 font-mono text-[8px] sm:text-[10px] uppercase tracking-widest opacity-50 text-center w-full px-4">
+                            SYS.REV 014 // PLEASE VERIFY SENSORY PREFERENCE TO INITIALIZE
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </>
     );
 }
