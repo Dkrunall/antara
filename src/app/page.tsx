@@ -1,9 +1,12 @@
 import Image from "next/image";
 import Clock from "@/components/Clock";
+import Preloader from "@/components/Preloader";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center">
+      <Preloader />
+
       <main className="w-full border-x border-foreground flex flex-col min-h-screen relative overflow-hidden text-sm">
 
         {/* Top Header */}
