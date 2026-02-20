@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #11120f;
+  --color-foreground: #e3ebd8;
+  --color-off-white: #e3ebd8;
+  --color-dark-surface: #171814;
+  --font-sans: var(--font-space-mono), monospace;
+  --font-mono: var(--font-space-mono), monospace;
+  --font-display: var(--font-syncopate), sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Set default border color for all elements */
+* {
+  border-color: var(--color-foreground);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
