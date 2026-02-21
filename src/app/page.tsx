@@ -45,7 +45,7 @@ export default function Home() {
         {/* Hero Image Section */}
         <section className="relative w-full aspect-[3/4] sm:aspect-square border-b border-foreground flex flex-col justify-end p-4 group">
           <Image
-            src="/PAN09393.jpg"
+            src="/new/PAN08900.jpg"
             alt="Cyberpunk Alleyway"
             fill
             className="object-cover absolute inset-0 z-0 grayscale contrast-125 brightness-[60%] mix-blend-screen object-top"
@@ -102,7 +102,7 @@ export default function Home() {
         {/* Cinematic Data Grid (Replaces Middle Content) */}
         <section className="relative w-full min-h-[500px] border-b border-foreground flex flex-col justify-end p-4 sm:p-8">
           <Image
-            src="/PAN08986.jpg"
+            src="/PAN09813.jpg"
             alt="DJ Studio Setup"
             fill
             className="object-cover absolute inset-0 z-0 grayscale-[30%] brightness-[40%] mix-blend-screen object-center"
@@ -138,8 +138,8 @@ export default function Home() {
         <section className="grid grid-cols-1 md:grid-cols-3 border-b border-foreground bg-dark-surface/50">
 
           {/* Abstract Image / Graphic Column */}
-          <div className="border-b md:border-b-0 md:border-r border-foreground relative min-h-[250px] overflow-hidden group">
-            <Image src="/PAN08979.jpg" alt="Abstract Textures" fill className="object-cover opacity-60 mix-blend-overlay grayscale group-hover:grayscale-0 transition-all duration-700" />
+          <div className="border-b md:border-b-0 md:border-r border-foreground relative min-h-[300px] overflow-hidden group">
+            <Image src="/PAN08979.jpg" alt="Abstract Textures" fill className="object-cover opacity-80 mix-blend-overlay grayscale group-hover:grayscale-0 transition-all duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
 
             <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full stroke-foreground/40 fill-none mix-blend-screen pointer-events-none p-4" strokeWidth="0.5">
@@ -253,7 +253,7 @@ export default function Home() {
 
             {/* Dark abstract bg for left col */}
             <div className="absolute inset-0 z-0">
-              <Image src="/PAN09257.jpg" alt="DJ Set Abstract" fill className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 grayscale mix-blend-screen" />
+              <Image src="/new/PAN09362.jpg" alt="DJ Set Abstract" fill className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500 grayscale mix-blend-screen" />
             </div>
 
             {/* Genres container */}
@@ -270,7 +270,7 @@ export default function Home() {
               <div className="font-bold underline underline-offset-4 mb-2 decoration-1 text-xs">BOOKING</div>
               <div className="font-mono mt-3 opacity-90 text-[8px]">
                 <a href="mailto:djantara29@gmail.com" className="hover:underline block break-words">&gt; djantara29@gmail.com</a>
-                <a href="tel:+91771089519" className="hover:underline block mt-1">&gt; +91 77108 9519</a>
+                <a href="tel:+917710895192" className="hover:underline block mt-1">&gt; +91 77108 95192</a>
               </div>
             </div>
           </div>
@@ -279,7 +279,7 @@ export default function Home() {
           <div className="p-6 font-mono relative overflow-y-auto no-scrollbar text-left group">
             {/* Make the picture clearly visible, not just a subtle background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-              <Image src="/PAN09393.jpg" alt="Venue Background" fill className="object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-luminosity" />
+              <Image src="/PAN09257.jpg" alt="Venue Background" fill className="object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-luminosity" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
             </div>
 
@@ -319,7 +319,7 @@ export default function Home() {
         {/* Up To Speed Module */}
         <section className="relative min-h-[500px] sm:min-h-[600px] border-b border-foreground flex items-center justify-center overflow-hidden">
           <Image
-            src="/PAN09071.jpg"
+            src="/new/PAN09556.jpg"
             alt="Cyberpunk Vertical"
             fill
             className="object-cover absolute inset-0 z-0 grayscale-[80%] brightness-[60%] contrast-125 object-center"
