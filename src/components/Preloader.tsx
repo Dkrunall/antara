@@ -1,8 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Preloader() {
+    const pathname = usePathname();
+    const isStudio = pathname === '/studio';
+
     const [phase, setPhase] = useState<"loading" | "prompt" | "hidden">("loading");
     const [progress, setProgress] = useState(0);
     const [isFading, setIsFading] = useState(false);
@@ -40,11 +44,34 @@ export default function Preloader() {
     const handleEnter = (withMusic: boolean) => {
         setIsFading(true);
 
-        if (withMusic) {
+        if (withMusic && !isStudio) {
             const audio = document.getElementById("bg-music") as HTMLAudioElement;
             if (audio) {
                 audio.volume = 0.5;
                 audio.play().catch(e => console.log("Audio play failed:", e));
+
+                // Initialize Web Audio API visualizer safely on user interaction
+                const anyAudio = audio as any;
+                if (!anyAudio.__audioContext) {
+                    try {
+                        const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+                        if (AudioContextClass) {
+                            const ctx = new AudioContextClass();
+                            const analyser = ctx.createAnalyser();
+                            const source = ctx.createMediaElementSource(audio);
+                            source.connect(analyser);
+                            analyser.connect(ctx.destination);
+                            analyser.fftSize = 256;
+
+                            anyAudio.__audioContext = ctx;
+                            anyAudio.__analyser = analyser;
+                        }
+                    } catch (e) {
+                        console.error("Audio context init failed", e);
+                    }
+                } else if (anyAudio.__audioContext.state === 'suspended') {
+                    anyAudio.__audioContext.resume();
+                }
             }
         }
 
@@ -55,7 +82,7 @@ export default function Preloader() {
 
     return (
         <>
-            <audio id="bg-music" loop src="/Pico De Amor.mp3" preload="auto" />
+            {!isStudio && <audio id="bg-music" loop src="/Pico De Amor.mp3" preload="auto" />}
 
             {phase !== "hidden" && (
                 <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background text-foreground transition-opacity duration-700 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
@@ -106,25 +133,37 @@ export default function Preloader() {
                             </div>
 
                             <p className="font-mono text-xs sm:text-sm uppercase tracking-widest opacity-80 mb-8 border-b border-foreground/50 pb-2 px-8">
-                                Select Sensory Experience
+                                {isStudio ? "Initialize Audio Engine" : "Select Sensory Experience"}
                             </p>
 
                             {/* Prompt Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full max-w-xl justify-center px-4 sm:px-0">
-                                <button
-                                    onClick={() => handleEnter(true)}
-                                    className="group relative px-4 sm:px-8 py-4 bg-foreground text-background font-bold tracking-widest uppercase text-[10px] sm:text-xs transition-all hover:bg-[#c8d4b8] cursor-crosshair overflow-hidden shadow-[4px_4px_0_rgba(0,0,0,0.5)] active:shadow-none active:translate-y-1 active:translate-x-1"
-                                >
-                                    <span className="relative z-10 font-mono">CONTINUE WITH MUSIC</span>
-                                    <div className="absolute inset-0 bg-background mix-blend-difference group-hover:scale-y-0 transition-transform origin-top duration-300 pointer-events-none opacity-20"></div>
-                                </button>
+                                {!isStudio ? (
+                                    <>
+                                        <button
+                                            onClick={() => handleEnter(true)}
+                                            className="group relative px-4 sm:px-8 py-4 bg-foreground text-background font-bold tracking-widest uppercase text-[10px] sm:text-xs transition-all hover:bg-[#c8d4b8] cursor-crosshair overflow-hidden shadow-[4px_4px_0_rgba(0,0,0,0.5)] active:shadow-none active:translate-y-1 active:translate-x-1"
+                                        >
+                                            <span className="relative z-10 font-mono">CONTINUE WITH MUSIC</span>
+                                            <div className="absolute inset-0 bg-background mix-blend-difference group-hover:scale-y-0 transition-transform origin-top duration-300 pointer-events-none opacity-20"></div>
+                                        </button>
 
-                                <button
-                                    onClick={() => handleEnter(false)}
-                                    className="group relative px-4 sm:px-8 py-4 bg-transparent text-foreground font-bold tracking-widest uppercase text-[10px] sm:text-xs border border-foreground transition-all hover:bg-dark-surface cursor-crosshair overflow-hidden"
-                                >
-                                    <span className="relative z-10 font-mono opacity-80 group-hover:opacity-100">CONTINUE WITHOUT MUSIC</span>
-                                </button>
+                                        <button
+                                            onClick={() => handleEnter(false)}
+                                            className="group relative px-4 sm:px-8 py-4 bg-transparent text-foreground font-bold tracking-widest uppercase text-[10px] sm:text-xs border border-foreground transition-all hover:bg-dark-surface cursor-crosshair overflow-hidden"
+                                        >
+                                            <span className="relative z-10 font-mono opacity-80 group-hover:opacity-100">CONTINUE WITHOUT MUSIC</span>
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button
+                                        onClick={() => handleEnter(false)}
+                                        className="group relative px-4 sm:px-8 py-4 bg-foreground text-background font-bold tracking-widest uppercase text-[10px] sm:text-xs transition-all hover:bg-[#c8d4b8] cursor-crosshair overflow-hidden shadow-[4px_4px_0_rgba(0,0,0,0.5)] active:shadow-none active:translate-y-1 active:translate-x-1"
+                                    >
+                                        <span className="relative z-10 font-mono">ENTER STUDIO MODE</span>
+                                        <div className="absolute inset-0 bg-background mix-blend-difference group-hover:scale-y-0 transition-transform origin-top duration-300 pointer-events-none opacity-20"></div>
+                                    </button>
+                                )}
                             </div>
                         </div>
 

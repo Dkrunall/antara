@@ -1,17 +1,11 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Clock from "@/components/Clock";
 import Preloader from "@/components/Preloader";
-import AudioVisualizer from "@/components/AudioVisualizer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center">
       <Preloader />
-
-      {/* Global Audio Visualizer */}
-      <div className="fixed bottom-0 left-0 w-full pointer-events-none z-40 opacity-70 mix-blend-screen" style={{ height: '80px' }}>
-        <AudioVisualizer className="w-full h-full" color="#c8d4b8" lineWidth={2} />
-      </div>
 
       <main className="w-full border-x border-foreground flex flex-col min-h-screen relative overflow-hidden text-sm">
 
@@ -34,20 +28,17 @@ export default function Home() {
               MASTER<br />OUT
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-3 sm:py-2 text-[10px] uppercase border-b border-foreground bg-background gap-3 sm:gap-0">
-            <span className="flex flex-wrap justify-center gap-3 sm:gap-4">
-              <span className="text-foreground/50 cursor-default">● HOME</span>
-              <a href="/about" className="hover:text-[#c8d4b8] transition-colors">● ABOUT</a>
-              <a href="/venues" className="hover:text-[#c8d4b8] transition-colors">● VENUES</a>
-              <a href="/press" className="hover:text-[#c8d4b8] transition-colors">● ASSETS</a>
-              <a href="/studio" className="hover:text-[#c8d4b8] transition-colors">● STUDIO</a>
-              <a href="/contact" className="hover:text-[#c8d4b8] transition-colors">● CONTACT</a>
+          <div className="flex justify-between items-center px-4 py-2 text-[10px] uppercase border-b border-foreground bg-background">
+            <span className="flex gap-4">
+              <a href="#about" className="hover:text-[#c8d4b8] transition-colors">ΓùÅ ABOUT</a>
+              <a href="#bio" className="hidden sm:inline hover:text-[#c8d4b8] transition-colors">ΓùÅ BIO</a>
+              <a href="#genres" className="hover:text-[#c8d4b8] transition-colors">ΓùÅ MUSIC</a>
             </span>
-            <span className="hidden sm:flex gap-2 tracking-widest leading-none">
-              <span>◆</span>
+            <span className="flex gap-2 tracking-widest">
+              <span>Γùå</span>
               <span>SETLIST</span>
             </span>
-            <span className="hidden sm:inline-block leading-none">CUE READY</span>
+            <span>CUE READY</span>
           </div>
         </header>
 
@@ -61,28 +52,24 @@ export default function Home() {
             priority
           />
           {/* Decorative Overlays */}
-          <div className="absolute top-4 right-4 z-10 text-[10px] text-right font-bold w-12 hidden sm:block">
-            <div className="mb-2 tracking-widest">◢_◤</div>
+          <div className="absolute top-4 right-4 z-10 text-[10px] text-right font-bold w-12">
+            <div className="mb-2 tracking-widest">Γùó_Γùñ</div>
             <div>REC</div>
             <div>[MIX]</div>
           </div>
-
-          {/* Absolute Positioned Bottom Text */}
-          <div className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 z-20 flex flex-col items-start sm:items-end w-max max-w-full">
-            <div className="hidden sm:block w-12 sm:w-16 border-t border-foreground mb-1"></div>
-            <div className="hidden sm:block w-6 sm:w-8 border-t border-foreground opacity-50 mb-4"></div>
-
-            {/* The Text Block */}
-            <div className="font-display text-xl sm:text-[8px] font-bold sm:font-normal tracking-widest uppercase text-left sm:text-right bg-dark-surface/90 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-4 sm:p-0 border border-foreground sm:border-0 drop-shadow-lg sm:drop-shadow-none">
-              GLOBAL BROADCAST // <br className="hidden sm:block" />
-              LIVE & DIRECT
+          <div className="absolute top-4 right-20 sm:right-28 z-10 flex flex-col items-end">
+            <div className="w-12 sm:w-16 border-t border-foreground mb-1"></div>
+            <div className="w-6 sm:w-8 border-t border-foreground opacity-50"></div>
+            <div className="mt-4 text-[7px] sm:text-[8px] tracking-widest uppercase text-right">
+              GLOBAL BROADCAST<br />
+              LIVE //
             </div>
           </div>
 
-          <button className="z-10 bg-off-white text-background font-bold tracking-widest uppercase text-xs px-6 py-3 mt-auto self-start flex items-center justify-center border border-foreground transition-all hover:bg-background hover:text-foreground cursor-pointer ease-in-out duration-300 shadow-[4px_4px_0_var(--color-foreground)] active:shadow-none active:translate-y-1 active:translate-x-1 hidden sm:flex">
-            <span>♥</span>
+          <button className="z-10 bg-off-white text-background font-bold tracking-widest uppercase text-xs px-6 py-3 mt-auto self-start flex items-center justify-center border border-foreground transition-all hover:bg-background hover:text-foreground cursor-pointer ease-in-out duration-300 shadow-[4px_4px_0_var(--color-foreground)] active:shadow-none active:translate-y-1 active:translate-x-1">
+            <span>ΓÖÑ</span>
             <span className="mx-4 font-display">CLICK TO EDIT</span>
-            <span>♥</span>
+            <span>ΓÖÑ</span>
           </button>
         </section>
 
@@ -90,24 +77,24 @@ export default function Home() {
         <section className="border-b border-foreground overflow-hidden py-3 flex text-xs sm:text-sm uppercase font-display font-bold tracking-widest bg-dark-surface whitespace-nowrap">
           <div className="flex animate-marquee shrink-0 gap-8 min-w-full justify-around items-center">
             <span className="flex items-center gap-2"><span>DJ ANATRA</span></span>
-            <span className="flex items-center gap-2 text-[16px]">✪</span>
+            <span className="flex items-center gap-2 text-[16px]">Γ£¬</span>
             <span className="flex items-center gap-2"><span>LIVE & DIRECT</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♞</span>
+            <span className="flex items-center gap-2 text-[16px]">ΓÖ₧</span>
             <span className="flex items-center gap-2"><span>TECHNO</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♥</span>
+            <span className="flex items-center gap-2 text-[16px]">ΓÖÑ</span>
             <span className="flex items-center gap-2"><span>AFRO HOUSE</span></span>
-            <span className="flex items-center gap-2 text-[16px]">☠</span>
+            <span className="flex items-center gap-2 text-[16px]">Γÿá</span>
             <span className="flex items-center gap-2"><span>MUMBAI TO DUBAI</span></span>
           </div>
           <div className="flex animate-marquee shrink-0 gap-8 min-w-full justify-around items-center" aria-hidden="true">
             <span className="flex items-center gap-2"><span>DJ ANATRA</span></span>
-            <span className="flex items-center gap-2 text-[16px]">✪</span>
+            <span className="flex items-center gap-2 text-[16px]">Γ£¬</span>
             <span className="flex items-center gap-2"><span>LIVE & DIRECT</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♞</span>
+            <span className="flex items-center gap-2 text-[16px]">ΓÖ₧</span>
             <span className="flex items-center gap-2"><span>TECHNO</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♥</span>
+            <span className="flex items-center gap-2 text-[16px]">ΓÖÑ</span>
             <span className="flex items-center gap-2"><span>AFRO HOUSE</span></span>
-            <span className="flex items-center gap-2 text-[16px]">☠</span>
+            <span className="flex items-center gap-2 text-[16px]">Γÿá</span>
             <span className="flex items-center gap-2"><span>MUMBAI TO DUBAI</span></span>
           </div>
         </section>
@@ -187,7 +174,7 @@ export default function Home() {
           {/* Action Col */}
           <div className="p-6 font-mono flex flex-col justify-center items-start relative overflow-hidden group hover:bg-foreground hover:text-background transition-colors cursor-pointer text-left h-[250px] sm:h-auto">
             <div className="absolute top-4 right-4 opacity-20 font-display text-6xl group-hover:opacity-10 transition-opacity pointer-events-none">
-              ◢◤
+              ΓùóΓùñ
             </div>
             <h3 className="font-bold underline underline-offset-4 mb-4 decoration-1 text-sm z-10 relative">LATEST MIXTAPE</h3>
             <div className="text-[10px] leading-relaxed opacity-80 uppercase z-10 relative">
@@ -205,7 +192,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- RESTORED SECTION: ABOUT DJ & BIO --- */}
+        {/* --- NEW SECTION: ABOUT DJ & BIO --- */}
         <section id="about" className="flex flex-col border-b border-foreground bg-background">
           {/* Header Bar */}
           <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground bg-dark-surface whitespace-nowrap overflow-hidden">
@@ -258,7 +245,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- RESTORED SECTION: GENRES, VENUES & BOOKING --- */}
+        {/* --- NEW SECTION: GENRES, VENUES & BOOKING --- */}
         <section id="genres" className="grid grid-cols-1 sm:grid-cols-2 border-b border-foreground text-[10px] uppercase tracking-widest bg-background h-auto sm:h-[500px]">
 
           {/* Left Column: Genres & Bookings */}
@@ -302,15 +289,15 @@ export default function Home() {
             <div className="font-bold underline underline-offset-4 mb-8 sticky top-0 z-10 py-2 text-sm drop-shadow-md">VENUES PLAYED</div>
 
             <ul className="space-y-4 font-bold opacity-90 z-10 relative text-[9px] drop-shadow-sm">
-              <li className="flex items-start gap-2 pb-2 border-b border-foreground/30"><span className="text-foreground">►</span> ZAMNA Afterparty @ Socials, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> TECHNO NIGHT @ ICY Dubai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Afro Night @ Icy Dubai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Techno Blast @ BaarBar, Dubai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Techno Night @ Pitch</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Over The Horizon @ Raasta Rooftop, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Femme Fatale @ Peninsula Grand Hotel, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Count Countdown @ HiPitch, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> After Hours @ Social, Mumbai</li>
+              <li className="flex items-start gap-2 pb-2 border-b border-foreground/30"><span className="text-foreground">Γû║</span> ZAMNA Afterparty @ Socials, Mumbai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> TECHNO NIGHT @ ICY Dubai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> Afro Night @ Icy Dubai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> Techno Blast @ BaarBar, Dubai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> Techno Night @ Pitch</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> Over The Horizon @ Raasta Rooftop, Mumbai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> Femme Fatale @ Peninsula Grand Hotel, Mumbai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> Count Countdown @ HiPitch, Mumbai</li>
+              <li className="flex items-start gap-2"><span className="text-foreground">Γû║</span> After Hours @ Social, Mumbai</li>
             </ul>
           </div>
         </section>
@@ -361,7 +348,7 @@ export default function Home() {
             <span className="hidden sm:inline">// DECRYPTED //</span>
             <span className="flex gap-4">
               <span>SYS.PRINT</span>
-              <span className="animate-pulse">▼</span>
+              <span className="animate-pulse">Γû╝</span>
               <span>TEC.READY</span>
             </span>
           </div>
