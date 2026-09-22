@@ -1,4 +1,6 @@
 import Image from "next/image";
+import PerformanceVideos from "@/components/PerformanceVideos";
+import VenueExplorer from "@/components/VenueExplorer";
 import Clock from "@/components/Clock";
 
 export default function Venues() {
@@ -84,20 +86,7 @@ export default function Venues() {
                                 Venues<br />Played
                             </h2>
 
-                            <ul className="text-xs sm:text-sm uppercase space-y-4 mb-12 opacity-80 decoration-1 underline-offset-4 decoration-foreground/30">
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>SOHO GARDENS</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>SOHO BEACH</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>HIVE</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>1 OAK</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>O1NE</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>BURLSQU</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>SECRET WEAPON</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>PENTHOUSE</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair"><span>STK DOWNTOWN</span><span className="opacity-50">DUBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair text-[#c8d4b8] opacity-100 font-bold"><span>DIABLO</span><span className="opacity-50">MUMBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair text-[#c8d4b8] opacity-100 font-bold"><span>DRAGONFLY</span><span className="opacity-50">MUMBAI</span></li>
-                                <li className="flex justify-between border-b border-foreground/30 pb-2 hover:bg-foreground hover:text-background p-2 transition-colors cursor-crosshair text-[#c8d4b8] opacity-100 font-bold"><span>MITRON</span><span className="opacity-50">MUMBAI</span></li>
-                            </ul>
+                            <VenueExplorer venues={[{"name":"SOHO GARDENS","city":"DUBAI"},{"name":"SOHO BEACH","city":"DUBAI"},{"name":"HIVE","city":"DUBAI"},{"name":"1 OAK","city":"DUBAI"},{"name":"O1NE","city":"DUBAI"},{"name":"BURLSQU","city":"DUBAI"},{"name":"SECRET WEAPON","city":"DUBAI"},{"name":"PENTHOUSE","city":"DUBAI"},{"name":"STK DOWNTOWN","city":"DUBAI"},{"name":"DIABLO","city":"MUMBAI"},{"name":"DRAGONFLY","city":"MUMBAI"},{"name":"MITRON","city":"MUMBAI"}]} />
 
                             <div className="mt-auto border-t border-foreground pt-4 flex flex-col">
                                 <span className="text-[10px] tracking-widest text-[#c8d4b8] mb-1 font-bold">NEW_LOG_ENTRY</span>
@@ -107,7 +96,7 @@ export default function Venues() {
 
                         {/* Right Col: Massive Imagery */}
                         <div className="w-full sm:w-1/2 md:w-7/12 relative min-h-[400px] overflow-hidden group">
-                            <Image src="/new/PAN09393.jpg" alt="Massive club crowd" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-center mix-blend-screen" />
+                            <Image src="/new/antara-crowd-view.jpg" alt="Massive club crowd" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-center mix-blend-screen" />
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
                             <div className="absolute inset-0 border-[2px] sm:border-[4px] border-background mix-blend-overlay pointer-events-none"></div>
 
@@ -122,6 +111,8 @@ export default function Venues() {
 
                     </div>
                 </section>
+
+                <PerformanceVideos wide />
 
                 {/* Footer Area - Replicated from Homepage */}
                 <footer className="flex flex-col bg-dark-surface">

@@ -1,4 +1,9 @@
 import Image from "next/image";
+import { ArrowUpRight, AudioLines, Disc3, Headphones, Radio, ChevronRight } from "lucide-react";
+import PerformanceVideos from "@/components/PerformanceVideos";
+import HeroVideo from "@/components/HeroVideo";
+import MusicControls from "@/components/MusicControls";
+import Magnetic from "@/components/Magnetic";
 import Clock from "@/components/Clock";
 import Preloader from "@/components/Preloader";
 import AudioVisualizer from "@/components/AudioVisualizer";
@@ -53,13 +58,7 @@ export default function Home() {
 
         {/* Hero Image Section */}
         <section className="relative w-full aspect-[3/4] sm:aspect-square border-b border-foreground flex flex-col justify-end p-4 group">
-          <Image
-            src="/new/PAN08900.jpg"
-            alt="Cyberpunk Alleyway"
-            fill
-            className="object-cover absolute inset-0 z-0 grayscale contrast-125 brightness-[60%] mix-blend-screen object-top"
-            priority
-          />
+          <HeroVideo />
           {/* Decorative Overlays */}
           <div className="absolute top-4 right-4 z-10 text-[10px] text-right font-bold w-12 hidden sm:block">
             <div className="mb-2 tracking-widest">◢_◤</div>
@@ -79,56 +78,58 @@ export default function Home() {
             </div>
           </div>
 
-          <button className="z-10 bg-off-white text-background font-bold tracking-widest uppercase text-xs px-6 py-3 mt-auto self-start flex items-center justify-center border border-foreground transition-all hover:bg-background hover:text-foreground cursor-pointer ease-in-out duration-300 shadow-[4px_4px_0_var(--color-foreground)] active:shadow-none active:translate-y-1 active:translate-x-1 hidden sm:flex">
-            <span>♥</span>
-            <span className="mx-4 font-display">CLICK TO EDIT</span>
-            <span>♥</span>
-          </button>
+          <Magnetic className="absolute top-4 right-4 sm:top-auto sm:bottom-4 sm:right-auto sm:left-4 z-20">
+            <a href="/contact" className="console-button group">Book Antara <ArrowUpRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>
+          </Magnetic>
         </section>
+
+        <MusicControls />
 
         {/* Ticker Section */}
         <section className="border-b border-foreground overflow-hidden py-3 flex text-xs sm:text-sm uppercase font-display font-bold tracking-widest bg-dark-surface whitespace-nowrap">
           <div className="flex animate-marquee shrink-0 gap-8 min-w-full justify-around items-center">
             <span className="flex items-center gap-2"><span>DJ ANATRA</span></span>
-            <span className="flex items-center gap-2 text-[16px]">✪</span>
+            <span className="flex items-center gap-2 text-[16px]"><Disc3 size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>LIVE & DIRECT</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♞</span>
+            <span className="flex items-center gap-2 text-[16px]"><AudioLines size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>TECHNO</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♥</span>
+            <span className="flex items-center gap-2 text-[16px]"><Headphones size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>AFRO HOUSE</span></span>
-            <span className="flex items-center gap-2 text-[16px]">☠</span>
+            <span className="flex items-center gap-2 text-[16px]"><Radio size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>MUMBAI TO DUBAI</span></span>
           </div>
           <div className="flex animate-marquee shrink-0 gap-8 min-w-full justify-around items-center" aria-hidden="true">
             <span className="flex items-center gap-2"><span>DJ ANATRA</span></span>
-            <span className="flex items-center gap-2 text-[16px]">✪</span>
+            <span className="flex items-center gap-2 text-[16px]"><Disc3 size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>LIVE & DIRECT</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♞</span>
+            <span className="flex items-center gap-2 text-[16px]"><AudioLines size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>TECHNO</span></span>
-            <span className="flex items-center gap-2 text-[16px]">♥</span>
+            <span className="flex items-center gap-2 text-[16px]"><Headphones size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>AFRO HOUSE</span></span>
-            <span className="flex items-center gap-2 text-[16px]">☠</span>
+            <span className="flex items-center gap-2 text-[16px]"><Radio size={16} aria-hidden="true" /></span>
             <span className="flex items-center gap-2"><span>MUMBAI TO DUBAI</span></span>
           </div>
         </section>
 
         {/* Cinematic Data Grid (Replaces Middle Content) */}
-        <section className="relative w-full min-h-[500px] border-b border-foreground flex flex-col justify-end p-4 sm:p-8">
+        <section id="soundscape" className="relative isolate w-full md:min-h-[620px] lg:aspect-[16/7] border-b border-foreground flex flex-col justify-end overflow-hidden md:p-8">
+          <div className="relative h-[380px] sm:h-[480px] md:h-auto md:absolute md:inset-0 overflow-hidden">
           <Image
-            src="/PAN09813.jpg"
-            alt="DJ Studio Setup"
+            src="/media/crowd-panorama.webp"
+            alt="Antara at the DJ booth facing a red-lit crowd" sizes="100vw"
             fill
-            className="object-cover absolute inset-0 z-0 grayscale-[30%] brightness-[40%] mix-blend-screen object-center"
+            className="soundscape-photo object-cover brightness-[85%]"
           />
+          </div>
 
-          <div className="relative z-10 w-full max-w-2xl">
-            <div className="bg-background/90 border border-foreground p-6 backdrop-blur-md">
+          <div className="relative z-10 w-full md:max-w-sm p-4 md:p-0">
+            <div className="@container bg-background/85 border border-foreground/60 p-5 sm:p-6 backdrop-blur-md">
               <div className="flex justify-between items-center border-b border-foreground/50 pb-2 mb-4">
                 <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">MIX.OVERRIDE // L-R</span>
                 <span className="text-[10px] animate-pulse text-foreground/70">REC</span>
               </div>
 
-              <h2 className="font-display text-4xl sm:text-6xl uppercase tracking-widest font-bold mb-4 drop-shadow-md leading-none">
+              <h2 className="font-display text-[clamp(1.5rem,10cqw,2.5rem)] uppercase tracking-[0.04em] font-bold mb-4 drop-shadow-md leading-[1.15]">
                 BREAKING<br />DATA
               </h2>
 
@@ -137,6 +138,9 @@ export default function Home() {
                 <p>&gt; UPLOADING NEW MIXES... SUCCESS.</p>
                 <p>&gt; FREQUENCY SYNCHRONIZED.</p>
               </div>
+              <Magnetic className="mt-5 w-full" strength={0.25}>
+                <a href="#live-moments" className="console-button console-button-outline w-full group">Watch live sets <ArrowUpRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>
+              </Magnetic>
             </div>
 
             {/* Small decorative tags */}
@@ -152,7 +156,7 @@ export default function Home() {
 
           {/* Abstract Image / Graphic Column */}
           <div className="border-b md:border-b-0 md:border-r border-foreground relative min-h-[300px] overflow-hidden group">
-            <Image src="/PAN08979.jpg" alt="Abstract Textures" fill className="object-cover opacity-80 mix-blend-overlay grayscale group-hover:grayscale-0 transition-all duration-700" />
+            <Image src="/media/social-performance.webp" alt="Antara performing behind the decks at Social" sizes="(min-width: 768px) 33vw, 100vw" fill className="object-cover object-center transition-all duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
 
             <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full stroke-foreground/40 fill-none mix-blend-screen pointer-events-none p-4" strokeWidth="0.5">
@@ -185,16 +189,16 @@ export default function Home() {
           </div>
 
           {/* Action Col */}
-          <div className="p-6 font-mono flex flex-col justify-center items-start relative overflow-hidden group hover:bg-foreground hover:text-background transition-colors cursor-pointer text-left h-[250px] sm:h-auto">
+          <a href="/studio" className="p-6 font-mono flex flex-col justify-center items-start relative overflow-hidden group hover:bg-foreground hover:text-background transition-colors cursor-pointer text-left h-[250px] sm:h-auto">
             <div className="absolute top-4 right-4 opacity-20 font-display text-6xl group-hover:opacity-10 transition-opacity pointer-events-none">
               ◢◤
             </div>
-            <h3 className="font-bold underline underline-offset-4 mb-4 decoration-1 text-sm z-10 relative">LATEST MIXTAPE</h3>
+            <h3 className="font-bold underline underline-offset-4 mb-4 decoration-1 text-sm z-10 relative">MAKE YOUR OWN BEAT</h3>
             <div className="text-[10px] leading-relaxed opacity-80 uppercase z-10 relative">
-              LISTEN TO THE SOUND<br />
-              ZAMNA AFTERPARTY SET<br />
-              AUDIO STREAM READY...<br />
-              CLICK TO EXECUTE
+              EXPLORE THE INTERACTIVE STUDIO<br />
+              PICK A RHYTHM. MAKE IT YOURS.<br />
+              NO EXPERIENCE NEEDED.<br />
+              OPEN STUDIO <ArrowUpRight size={14} aria-hidden="true" className="inline-block align-middle" />
             </div>
 
             <div className="mt-8 z-10 relative">
@@ -202,7 +206,7 @@ export default function Home() {
                 <div className="w-full h-full border border-current mix-blend-difference rounded-sm"></div>
               </div>
             </div>
-          </div>
+          </a>
         </section>
 
         {/* --- RESTORED SECTION: ABOUT DJ & BIO --- */}
@@ -214,22 +218,29 @@ export default function Home() {
             <span>ARTIST: ANTARA 029</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 text-justify">
-            {/* Image Col (New) - Dominates 2/3 of space */}
-            <div className="sm:col-span-2 border-b sm:border-b-0 sm:border-r border-foreground relative min-h-[500px] overflow-hidden group">
-              <Image src="/PAN09138.jpg" alt="DJ Antara" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-center" />
+          <div className="grid grid-cols-1 md:grid-cols-2 text-justify">
+            {/* Image Col - Proportional portrait slot */}
+            <div className="border-b md:border-b-0 md:border-r border-foreground relative aspect-[4/5] md:aspect-auto md:min-h-[640px] overflow-hidden group bg-black">
+              <Image
+                src="/media/headphones-portrait.webp"
+                alt="Antara wearing headphones under red stage lights"
+                sizes="(min-width: 768px) 50vw, 100vw"
+                fill
+                className="object-cover object-[center_25%]"
+                priority
+              />
               <div className="absolute inset-0 border-[4px] border-background mix-blend-overlay pointer-events-none"></div>
-              <div className="absolute bottom-4 left-4 font-display text-4xl sm:text-6xl font-bold uppercase tracking-widest bg-background/80 px-4 py-2 backdrop-blur-sm">
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 font-display text-4xl sm:text-6xl font-bold uppercase tracking-widest bg-background/80 px-4 py-2 backdrop-blur-sm z-10 border border-foreground/20">
                 ANTARA
               </div>
             </div>
 
-            {/* ABOUT & BIO Combos - Takes up 1/3 of space */}
-            <div className="p-6 font-mono flex flex-col bg-dark-surface relative overflow-y-auto max-h-[400px] sm:max-h-[600px] no-scrollbar">
+            {/* ABOUT & BIO Combos - Natural spacing */}
+            <div className="p-6 sm:p-8 md:p-10 font-mono flex flex-col justify-start bg-dark-surface relative overflow-y-auto no-scrollbar">
               <div className="absolute top-2 right-4 text-[8px] uppercase tracking-widest opacity-50">PRESSKIT.TXT</div>
 
               <h2 className="font-display text-xl uppercase tracking-widest font-bold mb-4">About</h2>
-              <div className="text-[9px] leading-relaxed uppercase opacity-80 space-y-3 mb-8">
+              <div className="text-[9px] leading-relaxed uppercase opacity-80 space-y-3 mb-6">
                 <p>
                   <strong className="text-foreground opacity-100 block mb-1">She is a PowerHouse</strong>
                   With a distinctive style, she takes her audience on an unforgettable journey, skillfully tapping into the energy of the moment.
@@ -242,8 +253,8 @@ export default function Home() {
               </div>
 
               <h2 id="bio" className="font-display text-xl uppercase tracking-widest font-bold mb-4">Bio</h2>
-              <div className="text-[9px] leading-relaxed uppercase opacity-80">
-                <p className="mb-3">
+              <div className="text-[9px] leading-relaxed uppercase opacity-80 space-y-3 mb-6">
+                <p>
                   Hailing from Mumbai, her journey began spinning for friends at local parties, but her passion quickly transformed into a profession.
                 </p>
                 <p>
@@ -251,7 +262,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <p className="text-[9px] leading-relaxed uppercase italic opacity-60 mt-6 border-l-2 border-foreground pl-3">
+              <p className="text-[9px] leading-relaxed uppercase italic opacity-60 border-l-2 border-foreground pl-3">
                 "Elevating the scene and connecting with audiences around the world."
               </p>
             </div>
@@ -292,7 +303,7 @@ export default function Home() {
           <div className="p-6 font-mono relative overflow-y-auto no-scrollbar text-left group">
             {/* Make the picture clearly visible, not just a subtle background */}
             <div className="absolute inset-0 z-0 pointer-events-none">
-              <Image src="/PAN09257.jpg" alt="Venue Background" fill className="object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-luminosity" />
+              <Image src="/media/night-profile.webp" alt="Venue Background" fill className="object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700 mix-blend-luminosity" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
             </div>
 
@@ -302,15 +313,15 @@ export default function Home() {
             <div className="font-bold underline underline-offset-4 mb-8 sticky top-0 z-10 py-2 text-sm drop-shadow-md">VENUES PLAYED</div>
 
             <ul className="space-y-4 font-bold opacity-90 z-10 relative text-[9px] drop-shadow-sm">
-              <li className="flex items-start gap-2 pb-2 border-b border-foreground/30"><span className="text-foreground">►</span> ZAMNA Afterparty @ Socials, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> TECHNO NIGHT @ ICY Dubai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Afro Night @ Icy Dubai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Techno Blast @ BaarBar, Dubai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Techno Night @ Pitch</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Over The Horizon @ Raasta Rooftop, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Femme Fatale @ Peninsula Grand Hotel, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> Count Countdown @ HiPitch, Mumbai</li>
-              <li className="flex items-start gap-2"><span className="text-foreground">►</span> After Hours @ Social, Mumbai</li>
+              <li className="flex items-start gap-2 pb-2 border-b border-foreground/30"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> ZAMNA Afterparty @ Socials, Mumbai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> TECHNO NIGHT @ ICY Dubai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> Afro Night @ Icy Dubai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> Techno Blast @ BaarBar, Dubai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> Techno Night @ Pitch</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> Over The Horizon @ Raasta Rooftop, Mumbai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> Femme Fatale @ Peninsula Grand Hotel, Mumbai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> Count Countdown @ HiPitch, Mumbai</li>
+              <li className="flex items-start gap-2"><ChevronRight size={12} aria-hidden="true" className="shrink-0" /> After Hours @ Social, Mumbai</li>
             </ul>
           </div>
         </section>
@@ -329,30 +340,7 @@ export default function Home() {
           </span>
         </div>
 
-        {/* Up To Speed Module */}
-        <section className="relative min-h-[500px] sm:min-h-[600px] border-b border-foreground flex items-center justify-center overflow-hidden">
-          <Image
-            src="/new/PAN09556.jpg"
-            alt="Cyberpunk Vertical"
-            fill
-            className="object-cover absolute inset-0 z-0 grayscale-[80%] brightness-[60%] contrast-125 object-center"
-          />
-          <div className="absolute inset-0 z-10 border-[0.5px] border-foreground/30 m-6 sm:m-12 rounded-[60px] pointer-events-none mix-blend-overlay"></div>
-
-          <div className="hidden sm:block z-20 font-display text-4xl sm:text-7xl font-bold uppercase tracking-widest text-[#d8e3ce] drop-shadow-[0_0_15px_rgba(216,227,206,0.5)]" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
-            UP TO SPEED
-          </div>
-
-          <div className="absolute top-8 left-8 z-20 font-display text-3xl opacity-50">
-            [ 14 ]
-          </div>
-
-          <div className="absolute bottom-8 right-8 z-20 text-[10px] uppercase font-mono max-w-[150px] text-right bg-background/80 p-2 border border-foreground backdrop-blur-sm">
-            [14] INITIATING...<br />
-            [SYS] DECRYPTING AUDIO LOG<br />
-            PLAYBACK: AUTO
-          </div>
-        </section>
+        <PerformanceVideos />
 
         {/* Footer Area */}
         <footer className="flex flex-col bg-dark-surface">

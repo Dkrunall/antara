@@ -16,6 +16,8 @@ export default function AudioVisualizer({ color = "rgba(216, 227, 206, 0.8)", cl
         if (!audioElement) return;
 
         let animationFrameId: number;
+        const dataArray = new Uint8Array(128);
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
         const draw = () => {
             animationFrameId = requestAnimationFrame(draw);
@@ -28,23 +30,33 @@ export default function AudioVisualizer({ color = "rgba(216, 227, 206, 0.8)", cl
             const width = canvas.width;
             const height = canvas.height;
 
-            const anyAudio = audioElement as any;
+            const anyAudio = audioElement as HTMLAudioElement & { __analyser?: AnalyserNode };
             const analyser = anyAudio.__analyser as AnalyserNode | undefined;
 
             // If no analyser or music is paused, clear the screen and draw nothing
-            if (!analyser || audioElement.paused) {
+            if (!analyser || audioElement.paused || audioElement.muted || audioElement.volume === 0 || document.hidden || reducedMotion.matches) {
                 ctx.clearRect(0, 0, width, height);
                 return;
             }
 
-            const bufferLength = analyser.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
-            analyser.getByteTimeDomainData(dataArray);
+            const bufferLength = dataArray.length;
+            analyser.getByteFrequencyData(dataArray);
 
             ctx.clearRect(0, 0, width, height);
             ctx.lineWidth = lineWidth;
             ctx.strokeStyle = color;
 
+            ctx.fillStyle = color;
+            const bars = 48;
+            const barWidth = width / bars;
+            for (let bar = 0; bar < bars; bar++) {
+                const value = dataArray[Math.floor(bar / bars * bufferLength)] / 255;
+                const barHeight = Math.max(1, value * height * 0.9);
+                ctx.globalAlpha = 0.3 + value * 0.7;
+                ctx.fillRect(bar * barWidth, (height - barHeight) / 2, Math.max(1, barWidth - 3), barHeight);
+            }
+            ctx.globalAlpha = 1;
+            analyser.getByteTimeDomainData(dataArray);
             ctx.beginPath();
 
             const sliceWidth = width * 1.0 / bufferLength;

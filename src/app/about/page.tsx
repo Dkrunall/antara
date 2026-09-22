@@ -74,8 +74,8 @@ export default function About() {
                     <div className="grid grid-cols-1 md:grid-cols-2 text-justify">
 
                         {/* Split Left: Massive Profile Image */}
-                        <div className="border-b md:border-b-0 md:border-r border-foreground relative min-h-[500px] md:min-h-[800px] overflow-hidden group">
-                            <Image src="/new/PAN09826.jpg" alt="DJ Antara Artist Profile" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-top" />
+                        <div className="border-b md:border-b-0 md:border-r border-foreground relative aspect-[3/4] md:aspect-auto md:min-h-[800px] overflow-hidden group">
+                            <Image src="/media/red-decks.webp" alt="Antara performing at the decks under red stage lighting" sizes="(min-width: 768px) 50vw, 100vw" fill className="object-cover object-[center_30%]" />
                             <div className="absolute inset-0 border-[4px] border-background mix-blend-overlay pointer-events-none"></div>
 
                             <div className="absolute bottom-6 left-6 font-display text-5xl md:text-8xl font-bold uppercase tracking-widest drop-shadow-lg text-foreground bg-background/50 px-4 py-2 backdrop-blur-sm">
@@ -154,7 +154,7 @@ export default function About() {
                         <span>VISUAL.LOG.014</span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-h-[400px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
 
                         {/* Extended Text Block */}
                         <div className="p-8 font-mono border-b sm:border-b-0 sm:border-r border-foreground flex flex-col justify-center bg-background/50">
@@ -175,22 +175,22 @@ export default function About() {
                         </div>
 
                         {/* Gallery Image 1 */}
-                        <div className="border-b sm:border-b-0 sm:border-r lg:border-b-0 border-foreground relative min-h-[300px] sm:min-h-full overflow-hidden group">
-                            <Image src="/new/PAN08912.jpg" alt="DJ Set Live" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-top" />
+                        <div className="border-b sm:border-b-0 sm:border-r lg:border-b-0 border-foreground relative aspect-[3/4] overflow-hidden group">
+                            <Image src="/media/bombay-booth.webp" alt="Antara smiling behind the DJ booth" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-top" />
                             <div className="absolute inset-0 border-[2px] border-background mix-blend-overlay pointer-events-none"></div>
                             <div className="absolute top-4 left-4 font-mono text-[8px] uppercase bg-background px-2 py-1">LOG: 001</div>
                         </div>
 
                         {/* Gallery Image 2 */}
-                        <div className="border-b sm:border-b-0 sm:border-r lg:border-b-0 border-foreground relative min-h-[300px] sm:min-h-full overflow-hidden group">
-                            <Image src="/new/PAN08920.jpg" alt="Crowd View" fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-center mix-blend-screen" />
+                        <div className="border-b sm:border-b-0 sm:border-r lg:border-b-0 border-foreground relative aspect-[3/4] overflow-hidden group">
+                            <Image src="/media/stage-profile.webp" alt="Antara in profile beside the decks" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" fill className="object-cover object-[center_30%]" />
                             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
                             <div className="absolute bottom-4 right-4 font-mono text-[8px] uppercase bg-foreground text-background px-2 py-1 shadow-[2px_2px_0_rgba(0,0,0,0.5)]">LOG: 002</div>
                         </div>
 
                         {/* Gallery Image 3 */}
-                        <div className="relative min-h-[300px] sm:min-h-full overflow-hidden group bg-background">
-                            <Image src="/new/PAN09556.jpg" alt="Abstract Studio Gear" fill className="object-cover opacity-60 mix-blend-overlay grayscale group-hover:grayscale-0 transition-all duration-700 object-center" />
+                        <div className="relative aspect-[3/4] overflow-hidden group bg-background">
+                            <Image src="/media/stage-turn.webp" alt="Antara looking back from the stage" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw" fill className="object-cover object-[center_30%]" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
                                 <h2 className="font-display text-4xl uppercase tracking-widest font-bold mb-4 drop-shadow-[0_0_15px_rgba(216,227,206,0.5)]">
                                     AURAL<br />ATTACK

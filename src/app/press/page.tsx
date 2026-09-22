@@ -119,8 +119,8 @@ export default function Press() {
                         </div>
 
                         {/* Right Col: Striking Imagery */}
-                        <div className="w-full md:w-1/2 relative min-h-[400px] overflow-hidden group">
-                            <Image src="/PAN08979.jpg" alt="Press Release Artwork" fill className="object-cover object-center grayscale-[50%] opacity-80" />
+                        <div className="w-full md:w-1/2 relative aspect-[3/4] md:aspect-auto min-h-[400px] overflow-hidden group">
+                            <Image src="/media/bombay-portrait.webp" alt="Antara smiling during a live DJ set" sizes="(min-width: 768px) 50vw, 100vw" fill className="object-cover object-[center_35%]" />
                             <div className="absolute inset-0 bg-background/20 z-0"></div>
 
                             <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background/80 to-transparent z-10 pointer-events-none"></div>

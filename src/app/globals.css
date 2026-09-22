@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 @theme inline {
   --color-background: #11120f;
   --color-foreground: #e3ebd8;
@@ -36,4 +34,63 @@ body {
 
 .animate-marquee {
   animation: marquee 20s linear infinite;
+}
+
+html { scroll-behavior: smooth; }
+:where(a, button, input, summary):focus-visible {
+  outline: 2px solid #c8d4b8;
+  outline-offset: 4px;
+}
+button { cursor: pointer; }
+.hero-spotlight { opacity: var(--spot-opacity, 0); background: radial-gradient(circle 250px at var(--spot-x, 50%) var(--spot-y, 50%), rgb(200 212 184 / 24%), transparent 100%); mix-blend-mode: screen; transition: opacity 400ms; }
+.dj-pad { background: #1d2019; color: var(--color-foreground); border-color: #59614f; transition: background 120ms, color 120ms, box-shadow 120ms, transform 120ms; touch-action: manipulation; }
+.dj-pad:hover { background: #2b3025; border-color: #c8d4b8; }
+.dj-pad.is-hit, .dj-pad:active { background: #c8d4b8; color: #11120f; box-shadow: inset 0 0 0 3px #11120f, 0 0 22px #c8d4b830; transform: translateY(2px); }
+.dj-pad:focus-visible, [aria-label^="Playable drum"]:focus-visible { outline: 2px solid #c8d4b8; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .hero-spotlight { display: none; } .dj-pad.is-hit { transform: none; } }
+.console-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.75rem 1.125rem;
+  border: 1px solid var(--color-foreground);
+  background: var(--color-foreground);
+  color: var(--color-background);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 180ms, color 180ms, transform 180ms;
+}
+.console-button:hover { background: #c8d4b8; }
+.console-button:active { transform: translateY(1px); }
+.console-button-outline { background: rgb(17 18 15 / 85%); color: var(--color-foreground); }
+.console-button-outline:hover { background: var(--color-foreground); color: var(--color-background); }
+.console-range { accent-color: #c8d4b8; cursor: pointer; }
+.player-icon { min-width: 36px; min-height: 44px; display: grid; place-items: center; color: var(--color-foreground); transition: background 150ms, color 150ms; }
+.player-icon:hover { background: var(--color-foreground); color: var(--color-background); }
+.player-icon svg { pointer-events: none; }
+.video-seek { appearance: none; background: transparent; cursor: pointer; }
+.video-seek::-webkit-slider-runnable-track { height: 2px; background: #66705b; }
+.video-seek::-webkit-slider-thumb { appearance: none; width: 10px; height: 10px; margin-top: -4px; background: #e3ebd8; border: 1px solid #11120f; border-radius: 0; }
+.video-seek::-moz-range-track { height: 2px; background: #66705b; }
+.video-seek::-moz-range-thumb { width: 10px; height: 10px; background: #e3ebd8; border: 1px solid #11120f; border-radius: 0; }
+.performance-player:fullscreen { display: flex; flex-direction: column; justify-content: center; width: 100%; height: 100%; }
+.performance-player:fullscreen video { min-height: 0; flex: 1; width: 100%; aspect-ratio: auto; }
+.soundscape-photo { object-position: 44% 50%; }
+@media (min-width: 768px) {
+  .soundscape-photo { width: 116% !important; max-width: none; object-position: center 55%; }
+}
+section:hover .animate-marquee { animation-play-state: paused; }
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
