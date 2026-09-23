@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import Clock from "@/components/Clock";
 
@@ -11,8 +12,8 @@ export default function Contact() {
                 <header className="flex flex-col border-b border-foreground">
                     <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground whitespace-nowrap overflow-hidden">
                         <span>[ 014 ]</span>
-                        <span className="hidden sm:inline-block">// AUDIO SIGNAL: CLEAR //</span>
-                        <span className="inline-block sm:hidden">// SIGNAL: OK //</span>
+                        <span className="hidden sm:inline-block">{'//'} AUDIO SIGNAL: CLEAR {'//'}</span>
+                        <span className="inline-block sm:hidden">{'//'} SIGNAL: OK {'//'}</span>
                         <Clock />
                     </div>
                     <div className="py-4 flex justify-center border-b border-foreground bg-dark-surface relative overflow-hidden">
@@ -28,7 +29,7 @@ export default function Contact() {
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-3 sm:py-2 text-[10px] uppercase border-b border-foreground bg-background gap-3 sm:gap-0">
                         <span className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                            <a href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</a>
+                            <Link href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</Link>
                             <a href="/about" className="hover:text-[#c8d4b8] transition-colors">● ABOUT</a>
                             <a href="/venues" className="hover:text-[#c8d4b8] transition-colors">● VENUES</a>
                             <a href="/press" className="hover:text-[#c8d4b8] transition-colors">● ASSETS</a>
@@ -51,7 +52,7 @@ export default function Contact() {
                         <div className="border border-foreground bg-dark-surface/40 backdrop-blur-md p-6 sm:p-12 max-w-5xl w-full shadow-[10px_10px_0_rgba(216,227,206,1)]">
 
                             <div className="text-[10px] uppercase tracking-widest border-b border-foreground/50 pb-2 col-span-2 mb-8 text-[#c8d4b8] flex justify-between">
-                                <span>// SECURE COMMS LINK INITIATED //</span>
+                                <span>{'//'} SECURE COMMS LINK INITIATED {'//'}</span>
                                 <span className="hidden sm:inline animate-pulse">STATUS: ENCRYPTED</span>
                             </div>
 
@@ -92,12 +93,12 @@ export default function Contact() {
                                 {/* Column 2: Network & Press */}
                                 <div>
                                     <h3 className="text-sm font-bold uppercase tracking-widest mb-6 border-b border-foreground/50 pb-2 flex justify-between">
-                                        <span>NETWORK // FILES</span>
+                                        <span>NETWORK {'//'} FILES</span>
                                         <span className="opacity-50">[02]</span>
                                     </h3>
                                     <ul className="text-xs sm:text-sm uppercase tracking-widest space-y-4 text-left font-bold">
                                         <li>
-                                            <a href="#" className="group flex flex-col border border-foreground/30 p-4 hover:bg-foreground hover:text-background transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-foreground)] bg-background/50 backdrop-blur-sm cursor-crosshair">
+                                            <a href="https://www.instagram.com/dj_antara/" target="_blank" rel="noopener noreferrer" className="group flex flex-col border border-foreground/30 p-4 hover:bg-foreground hover:text-background transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-foreground)] bg-background/50 backdrop-blur-sm cursor-crosshair">
                                                 <span className="text-[10px] opacity-70 group-hover:opacity-100 mb-2 font-mono flex justify-between">
                                                     <span>IG.SOCIAL</span>
                                                     <span>↗</span>
@@ -106,7 +107,7 @@ export default function Contact() {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" className="group flex flex-col border border-foreground/30 p-4 hover:bg-foreground hover:text-background transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-foreground)] bg-background/50 backdrop-blur-sm cursor-crosshair">
+                                            <a href="https://soundcloud.com/djantara" target="_blank" rel="noopener noreferrer" className="group flex flex-col border border-foreground/30 p-4 hover:bg-foreground hover:text-background transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-foreground)] bg-background/50 backdrop-blur-sm cursor-crosshair">
                                                 <span className="text-[10px] opacity-70 group-hover:opacity-100 mb-2 font-mono flex justify-between">
                                                     <span>SC.MUSIC</span>
                                                     <span>↗</span>
@@ -133,7 +134,7 @@ export default function Contact() {
                             {/* Decorative Barcode */}
                             <div className="w-full flex gap-1 h-8 opacity-20 mb-8 overflow-hidden pointer-events-none">
                                 {[...Array(40)].map((_, i) => (
-                                    <div key={i} className={`bg-foreground h-full ${Math.random() > 0.5 ? 'w-1' : Math.random() > 0.8 ? 'w-3' : 'w-2'}`}></div>
+                                    <div key={i} className={`bg-foreground h-full ${i % 3 === 0 ? 'w-1' : i % 5 === 0 ? 'w-3' : 'w-2'}`}></div>
                                 ))}
                             </div>
 
@@ -150,7 +151,7 @@ export default function Contact() {
                 <footer className="flex flex-col bg-dark-surface relative z-20">
                     <div className="flex justify-between items-center px-4 py-2 text-[8px] uppercase border-y border-foreground whitespace-nowrap overflow-hidden tracking-widest">
                         <span>[X] SYS_DATA OK</span>
-                        <span className="hidden sm:inline">// DECRYPTED //</span>
+                        <span className="hidden sm:inline">{'//'} DECRYPTED {'//'}</span>
                         <span className="flex gap-4">
                             <span>SYS.PRINT</span>
                             <span className="animate-pulse">▼</span>

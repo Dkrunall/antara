@@ -1,19 +1,25 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
 export type DrumStyle = 'techno' | 'afro';
 
 export function useAudioEngine() {
     const audioCtxRef = useRef<AudioContext | null>(null);
 
+    const analyserRef = useRef<AnalyserNode | null>(null);
+
     useEffect(() => {
         // Lazily initialize the AudioContext 
-        const AudioContextClass = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
+        const AudioContextClass = window.AudioContext;
         if (AudioContextClass && !audioCtxRef.current) {
             audioCtxRef.current = new AudioContextClass();
+            analyserRef.current = audioCtxRef.current.createAnalyser();
+            analyserRef.current.fftSize = 256;
+            analyserRef.current.connect(audioCtxRef.current.destination);
         }
+        return () => { void audioCtxRef.current?.close(); audioCtxRef.current = null; analyserRef.current = null; };
     }, []);
 
-    const playKick = (time: number, style: DrumStyle = 'techno') => {
+    const playKick = useCallback((time: number, style: DrumStyle = 'techno') => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
 
@@ -21,7 +27,7 @@ export function useAudioEngine() {
         const gain = ctx.createGain();
 
         osc.connect(gain);
-        gain.connect(ctx.destination);
+        gain.connect(analyserRef.current ?? ctx.destination);
 
         if (style === 'techno') {
             // Punchy, tight techno kick
@@ -44,9 +50,9 @@ export function useAudioEngine() {
             osc.start(time);
             osc.stop(time + 0.6);
         }
-    };
+    }, []);
 
-    const playClap = (time: number, style: DrumStyle = 'techno') => {
+    const playClap = useCallback((time: number, style: DrumStyle = 'techno') => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
 
@@ -71,12 +77,12 @@ export function useAudioEngine() {
 
         noise.connect(noiseFilter);
         noiseFilter.connect(noiseGain);
-        noiseGain.connect(ctx.destination);
+        noiseGain.connect(analyserRef.current ?? ctx.destination);
 
         noise.start(time);
-    };
+    }, []);
 
-    const playHat = (time: number, style: DrumStyle = 'techno') => {
+    const playHat = useCallback((time: number, style: DrumStyle = 'techno') => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
 
@@ -121,7 +127,7 @@ export function useAudioEngine() {
 
         bandpass.connect(highpass);
         highpass.connect(gain);
-        gain.connect(ctx.destination);
+        gain.connect(analyserRef.current ?? ctx.destination);
 
         const dur = style === 'techno' ? 0.05 : 0.1;
         gain.gain.setValueAtTime(0.3, time);
@@ -129,9 +135,9 @@ export function useAudioEngine() {
 
         osc1.start(time); osc2.start(time); osc3.start(time); osc4.start(time); osc5.start(time); osc6.start(time);
         osc1.stop(time + dur); osc2.stop(time + dur); osc3.stop(time + dur); osc4.stop(time + dur); osc5.stop(time + dur); osc6.stop(time + dur);
-    };
+    }, []);
 
-    const playPerc = (time: number, style: DrumStyle = 'techno') => {
+    const playPerc = useCallback((time: number, style: DrumStyle = 'techno') => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
 
@@ -139,7 +145,7 @@ export function useAudioEngine() {
         const gain = ctx.createGain();
 
         osc.connect(gain);
-        gain.connect(ctx.destination);
+        gain.connect(analyserRef.current ?? ctx.destination);
 
         if (style === 'techno') {
             // Techy synth blip
@@ -164,9 +170,9 @@ export function useAudioEngine() {
             osc.start(time);
             osc.stop(time + 0.2);
         }
-    };
+    }, []);
 
-    const playBaseMusic = (time: number, stepOffet: number, style: DrumStyle = 'techno') => {
+    const playBaseMusic = useCallback((time: number, stepOffet: number, style: DrumStyle = 'techno') => {
         if (!audioCtxRef.current) return;
         const ctx = audioCtxRef.current;
 
@@ -176,7 +182,7 @@ export function useAudioEngine() {
 
         osc.connect(filter);
         filter.connect(gain);
-        gain.connect(ctx.destination);
+        gain.connect(analyserRef.current ?? ctx.destination);
 
         if (style === 'techno') {
             // Acid techno rolling bassline
@@ -222,9 +228,10 @@ export function useAudioEngine() {
             osc.start(time);
             osc.stop(time + 0.5); // Plays longer than the step
         }
-    };
+    }, []);
 
-    const getAudioContext = () => audioCtxRef.current;
+    const getAudioContext = useCallback(() => audioCtxRef.current, []);
+    const getAnalyser = useCallback(() => analyserRef.current, []);
 
-    return { playKick, playClap, playHat, playPerc, playBaseMusic, getAudioContext };
+    return { playKick, playClap, playHat, playPerc, playBaseMusic, getAudioContext, getAnalyser };
 }

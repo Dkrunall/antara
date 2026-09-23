@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+
 import Clock from "@/components/Clock";
 import Preloader from "@/components/Preloader";
 import { useAudioEngine, DrumStyle } from "@/hooks/useAudioEngine";
@@ -11,7 +12,7 @@ const TRACKS = ["KICK", "CLAP", "HAT", "PERC"];
 const STEPS = 16;
 
 export default function Studio() {
-    const { playKick, playClap, playHat, playPerc, playBaseMusic, getAudioContext } = useAudioEngine();
+    const { playKick, playClap, playHat, playPerc, playBaseMusic, getAudioContext, getAnalyser } = useAudioEngine();
 
     // Initial 4x16 empty grid
     const [grid, setGrid] = useState<boolean[][]>(() => {
@@ -75,8 +76,6 @@ export default function Studio() {
             // Calculate milliseconds per step (16th notes)
             const stepTimeMs = 15000 / bpm;
             intervalId = setInterval(tick, stepTimeMs);
-        } else {
-            setCurrentStep(0);
         }
 
         return () => {
@@ -105,9 +104,6 @@ export default function Studio() {
         <div className="min-h-screen bg-background text-foreground flex flex-col items-center">
             <Preloader />
 
-            <div className="fixed bottom-0 left-0 w-full pointer-events-none z-0 opacity-20 mix-blend-screen" style={{ height: '30vh' }}>
-                <AudioVisualizer className="w-full h-full" color="#c8d4b8" lineWidth={1} />
-            </div>
 
             <main className="w-full border-x border-foreground flex flex-col min-h-screen relative overflow-hidden z-10 text-sm bg-background/80 backdrop-blur-sm">
 
@@ -115,14 +111,14 @@ export default function Studio() {
                 <header className="flex flex-col border-b border-foreground">
                     <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground whitespace-nowrap overflow-hidden bg-background">
                         <span>[ 014 ]</span>
-                        <span className="hidden sm:inline-block">// IN-BROWSER AUDIO ENGINE //</span>
-                        <span className="inline-block sm:hidden">// ENGINE: OK //</span>
+                        <span className="hidden sm:inline-block">{'//'} IN-BROWSER AUDIO ENGINE {'//'}</span>
+                        <span className="inline-block sm:hidden">{'//'} ENGINE: OK {'//'}</span>
                         <Clock />
                     </div>
 
                     <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-3 sm:py-2 text-[10px] uppercase border-b border-foreground bg-background gap-3 sm:gap-0">
                         <span className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                            <a href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</a>
+                            <Link href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</Link>
                             <a href="/about" className="hover:text-[#c8d4b8] transition-colors">● ABOUT</a>
                             <a href="/venues" className="hover:text-[#c8d4b8] transition-colors">● VENUES</a>
                             <a href="/press" className="hover:text-[#c8d4b8] transition-colors">● ASSETS</a>
@@ -151,6 +147,7 @@ export default function Studio() {
                             <div className="flex items-center gap-4 bg-dark-surface p-3 border border-foreground">
                                 <span className="text-xs font-bold w-8">BPM</span>
                                 <input
+                                    aria-label="Tempo in beats per minute"
                                     type="range"
                                     min="80"
                                     max="160"
@@ -166,12 +163,14 @@ export default function Studio() {
                                 <span className="text-xs font-bold w-8">KIT</span>
                                 <div className="flex gap-2 text-xs w-full">
                                     <button
+                                        aria-pressed={style === "techno"}
                                         onClick={() => { setStyle("techno"); setBpm(130); }}
                                         className={`flex-1 sm:flex-none px-3 py-1 border transition-colors ${style === 'techno' ? 'bg-foreground text-background border-foreground font-bold' : 'border-foreground/30 hover:bg-foreground/10'}`}
                                     >
                                         TECHNO
                                     </button>
                                     <button
+                                        aria-pressed={style === "afro"}
                                         onClick={() => { setStyle("afro"); setBpm(118); }}
                                         className={`flex-1 sm:flex-none px-3 py-1 border transition-colors ${style === 'afro' ? 'bg-foreground text-background border-foreground font-bold' : 'border-foreground/30 hover:bg-foreground/10'}`}
                                     >
@@ -185,7 +184,7 @@ export default function Studio() {
                     {/* Transport Controls */}
                     <div className="flex gap-4 mb-8 max-w-5xl mx-auto w-full">
                         <button
-                            onClick={() => setIsPlaying(!isPlaying)}
+                            onClick={() => { if (isPlaying) setCurrentStep(0); setIsPlaying(!isPlaying); }}
                             className={`flex-[3] sm:flex-[4] py-4 font-display text-3xl sm:text-4xl tracking-widest border transition-all ${isPlaying ? 'bg-[#c8d4b8] text-background border-[#c8d4b8] shadow-[0_0_20px_rgba(200,212,184,0.3)]' : 'bg-foreground hover:bg-background hover:text-foreground border-foreground text-background shadow-[4px_4px_0_var(--color-foreground)] active:shadow-none active:translate-y-1 active:translate-x-1'}`}
                         >
                             {isPlaying ? "■ STOP" : "► PLAY"}
@@ -196,6 +195,10 @@ export default function Studio() {
                         >
                             CLEAR
                         </button>
+                    </div>
+
+                    <div className="w-full max-w-5xl mx-auto h-24 border border-foreground/30 bg-background mb-8" aria-hidden="true">
+                        <AudioVisualizer getAnalyser={getAnalyser} active={isPlaying} className="w-full h-full" color="#c8d4b8" lineWidth={1} />
                     </div>
 
                     {/* Step Sequencer Grid */}
@@ -228,6 +231,7 @@ export default function Studio() {
                                                     onClick={() => toggleStep(trackIdx, stepIdx)}
                                                     className={`h-14 sm:h-16 w-full ${borderClass} border-b border-foreground/5 transition-all duration-75 relative group ${isCurrentBeat ? 'bg-foreground/20 z-10' : bgClass}`}
                                                     aria-label={`Toggle ${track} step ${stepIdx + 1}`}
+                                                    aria-pressed={isActive}
                                                 >
                                                     {/* Glow behind current beat */}
                                                     {isCurrentBeat && <div className="absolute inset-0 bg-[#c8d4b8]/20 mix-blend-screen pointer-events-none"></div>}

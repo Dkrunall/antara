@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Preloader() {
@@ -10,6 +10,15 @@ export default function Preloader() {
     const [phase, setPhase] = useState<"loading" | "prompt" | "hidden">("loading");
     const [progress, setProgress] = useState(0);
     const [isFading, setIsFading] = useState(false);
+    const dialogRef = useRef<HTMLDialogElement>(null);
+
+    useEffect(() => {
+        const dialog = dialogRef.current;
+        if (!dialog || phase === "hidden") return;
+        if (!dialog.open) dialog.showModal();
+        if (phase === "prompt") dialog.querySelector<HTMLButtonElement>('button')?.focus();
+        return () => dialog.close();
+    }, [phase]);
 
     // Prevent scrolling when preloader is open
     useEffect(() => {
@@ -51,10 +60,10 @@ export default function Preloader() {
                 audio.play().catch(e => console.log("Audio play failed:", e));
 
                 // Initialize Web Audio API visualizer safely on user interaction
-                const anyAudio = audio as any;
+                const anyAudio = audio as HTMLAudioElement & { __audioContext?: AudioContext; __analyser?: AnalyserNode };
                 if (!anyAudio.__audioContext) {
                     try {
-                        const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+                        const AudioContextClass = window.AudioContext;
                         if (AudioContextClass) {
                             const ctx = new AudioContextClass();
                             const analyser = ctx.createAnalyser();
@@ -85,7 +94,15 @@ export default function Preloader() {
             {!isStudio && <audio id="bg-music" loop src="/Pico De Amor.mp3" preload="auto" />}
 
             {phase !== "hidden" && (
-                <div className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-background text-foreground transition-opacity duration-700 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                <dialog ref={dialogRef} aria-label="Choose your listening experience" onKeyDown={event => {
+                    if (event.key !== "Tab") return;
+                    const buttons = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('button')).filter(button => !button.disabled && !button.closest('[inert]'));
+                    const first = buttons[0];
+                    const last = buttons[buttons.length - 1];
+                    if (!first) { event.preventDefault(); return; }
+                    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+                    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+                }} onCancel={event => { event.preventDefault(); handleEnter(false); }} className={`fixed inset-0 m-0 w-screen h-dvh max-w-none max-h-none p-0 border-0 z-50 flex flex-col items-center justify-center bg-background text-foreground transition-opacity duration-700 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
 
                     {/* Subtle background overlay & borders */}
                     <div className="absolute inset-0 bg-dark-surface/50 pointer-events-none z-0"></div>
@@ -124,7 +141,7 @@ export default function Preloader() {
                         </div>
 
                         {/* PROMPT PHASE */}
-                        <div className={`flex flex-col items-center justify-center w-full transition-all duration-700 transform ${phase === "prompt" ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95 pointer-events-none'}`}>
+                        <div inert={phase !== "prompt"} className={`flex flex-col items-center justify-center w-full transition-all duration-700 transform ${phase === "prompt" ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95 pointer-events-none'}`}>
                             {/* Massive ANTARA Logo */}
                             <div className="w-full flex justify-center mb-12 sm:mb-24 scale-x-110 sm:scale-x-150 origin-center">
                                 <h1 className="font-display text-4xl sm:text-7xl md:text-9xl font-black tracking-widest uppercase relative drop-shadow-md">
@@ -172,7 +189,7 @@ export default function Preloader() {
                             SYS.REV 014 // PLEASE VERIFY SENSORY PREFERENCE TO INITIALIZE
                         </div>
                     </div>
-                </div>
+                </dialog>
             )}
         </>
     );

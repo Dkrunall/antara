@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import PerformanceVideos from "@/components/PerformanceVideos";
 import VenueExplorer from "@/components/VenueExplorer";
@@ -13,8 +14,8 @@ export default function Venues() {
                 <header className="flex flex-col border-b border-foreground">
                     <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground whitespace-nowrap overflow-hidden">
                         <span>[ 014 ]</span>
-                        <span className="hidden sm:inline-block">// AUDIO SIGNAL: CLEAR //</span>
-                        <span className="inline-block sm:hidden">// SIGNAL: OK //</span>
+                        <span className="hidden sm:inline-block">{'//'} AUDIO SIGNAL: CLEAR {'//'}</span>
+                        <span className="inline-block sm:hidden">{'//'} SIGNAL: OK {'//'}</span>
                         <Clock />
                     </div>
                     <div className="py-4 flex justify-center border-b border-foreground bg-dark-surface relative overflow-hidden">
@@ -30,7 +31,7 @@ export default function Venues() {
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-3 sm:py-2 text-[10px] uppercase border-b border-foreground bg-background gap-3 sm:gap-0">
                         <span className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                            <a href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</a>
+                            <Link href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</Link>
                             <a href="/about" className="hover:text-[#c8d4b8] transition-colors">● ABOUT</a>
                             <span className="text-foreground/50 cursor-default">● VENUES</span>
                             <a href="/press" className="hover:text-[#c8d4b8] transition-colors">● ASSETS</a>
@@ -78,7 +79,7 @@ export default function Venues() {
                         {/* Left Col: Terminal / Venue Log */}
                         <div className="w-full sm:w-1/2 md:w-5/12 border-b sm:border-b-0 sm:border-r border-foreground p-6 sm:p-12 font-mono flex flex-col bg-dark-surface">
                             <div className="flex justify-between items-center border-b border-foreground/50 pb-2 mb-8">
-                                <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">ARCHIVE // LOCATIONS</span>
+                                <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">ARCHIVE {'//'} LOCATIONS</span>
                                 <span className="text-[10px] animate-pulse text-foreground/70 text-[#c8d4b8]">LIVE</span>
                             </div>
 
@@ -118,7 +119,7 @@ export default function Venues() {
                 <footer className="flex flex-col bg-dark-surface">
                     <div className="flex justify-between items-center px-4 py-2 text-[8px] uppercase border-b border-foreground whitespace-nowrap overflow-hidden tracking-widest">
                         <span>[X] SYS_DATA OK</span>
-                        <span className="hidden sm:inline">// DECRYPTED //</span>
+                        <span className="hidden sm:inline">{'//'} DECRYPTED {'//'}</span>
                         <span className="flex gap-4">
                             <span>SYS.PRINT</span>
                             <span className="animate-pulse">▼</span>

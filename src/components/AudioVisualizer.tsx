@@ -6,14 +6,16 @@ interface AudioVisualizerProps {
     color?: string;
     className?: string;
     lineWidth?: number;
+    getAnalyser?: () => AnalyserNode | null;
+    active?: boolean;
 }
 
-export default function AudioVisualizer({ color = "rgba(216, 227, 206, 0.8)", className = "w-full h-16", lineWidth = 2 }: AudioVisualizerProps) {
+export default function AudioVisualizer({ color = "rgba(216, 227, 206, 0.8)", className = "w-full h-16", lineWidth = 2, getAnalyser, active = true }: AudioVisualizerProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
         const audioElement = document.getElementById("bg-music") as HTMLAudioElement;
-        if (!audioElement) return;
+        if (!audioElement && !getAnalyser) return;
 
         let animationFrameId: number;
         const dataArray = new Uint8Array(128);
@@ -31,10 +33,10 @@ export default function AudioVisualizer({ color = "rgba(216, 227, 206, 0.8)", cl
             const height = canvas.height;
 
             const anyAudio = audioElement as HTMLAudioElement & { __analyser?: AnalyserNode };
-            const analyser = anyAudio.__analyser as AnalyserNode | undefined;
+            const analyser = getAnalyser ? getAnalyser() : anyAudio?.__analyser;
 
             // If no analyser or music is paused, clear the screen and draw nothing
-            if (!analyser || audioElement.paused || audioElement.muted || audioElement.volume === 0 || document.hidden || reducedMotion.matches) {
+            if (!analyser || !active || (!getAnalyser && (!audioElement || audioElement.paused || audioElement.muted || audioElement.volume === 0)) || document.hidden || reducedMotion.matches) {
                 ctx.clearRect(0, 0, width, height);
                 return;
             }
@@ -84,7 +86,7 @@ export default function AudioVisualizer({ color = "rgba(216, 227, 206, 0.8)", cl
         return () => {
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
         };
-    }, [color, lineWidth]);
+    }, [color, lineWidth, getAnalyser, active]);
 
     useEffect(() => {
         const handleResize = () => {

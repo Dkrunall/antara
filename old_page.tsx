@@ -13,8 +13,8 @@ export default function Home() {
         <header className="flex flex-col border-b border-foreground">
           <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground whitespace-nowrap overflow-hidden">
             <span>[ 014 ]</span>
-            <span className="hidden sm:inline-block">// AUDIO SIGNAL: CLEAR //</span>
-            <span className="inline-block sm:hidden">// SIGNAL: OK //</span>
+            <span className="hidden sm:inline-block">{'//'} AUDIO SIGNAL: CLEAR {'//'}</span>
+            <span className="inline-block sm:hidden">{'//'} SIGNAL: OK {'//'}</span>
             <Clock />
           </div>
           <div className="py-4 flex justify-center border-b border-foreground bg-dark-surface relative overflow-hidden">
@@ -62,7 +62,7 @@ export default function Home() {
             <div className="w-6 sm:w-8 border-t border-foreground opacity-50"></div>
             <div className="mt-4 text-[7px] sm:text-[8px] tracking-widest uppercase text-right">
               GLOBAL BROADCAST<br />
-              LIVE //
+              LIVE {'//'}
             </div>
           </div>
 
@@ -111,7 +111,7 @@ export default function Home() {
           <div className="relative z-10 w-full max-w-2xl">
             <div className="bg-background/90 border border-foreground p-6 backdrop-blur-md">
               <div className="flex justify-between items-center border-b border-foreground/50 pb-2 mb-4">
-                <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">MIX.OVERRIDE // L-R</span>
+                <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">MIX.OVERRIDE {'//'} L-R</span>
                 <span className="text-[10px] animate-pulse text-foreground/70">REC</span>
               </div>
 
@@ -166,7 +166,7 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex justify-between items-end border-t border-foreground pt-4 opacity-70 text-[8px] z-10">
-              <span>LOW // MID // HIGH</span>
+              <span>LOW {'//'} MID {'//'} HIGH</span>
               <div className="animate-pulse w-2 h-2 bg-foreground rounded-full"></div>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function Home() {
         <section id="about" className="flex flex-col border-b border-foreground bg-background">
           {/* Header Bar */}
           <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground bg-dark-surface whitespace-nowrap overflow-hidden">
-            <span>// PROFILE //</span>
+            <span>{'//'} PROFILE {'//'}</span>
             <span className="animate-pulse">SPINNING...</span>
             <span>ARTIST: ANTARA 029</span>
           </div>
@@ -239,7 +239,7 @@ export default function Home() {
               </div>
 
               <p className="text-[9px] leading-relaxed uppercase italic opacity-60 mt-6 border-l-2 border-foreground pl-3">
-                "Elevating the scene and connecting with audiences around the world."
+                &quot;Elevating the scene and connecting with audiences around the world.&quot;
               </p>
             </div>
           </div>
@@ -345,7 +345,7 @@ export default function Home() {
         <footer className="flex flex-col bg-dark-surface">
           <div className="flex justify-between items-center px-4 py-2 text-[8px] uppercase border-b border-foreground whitespace-nowrap overflow-hidden tracking-widest">
             <span>[X] SYS_DATA OK</span>
-            <span className="hidden sm:inline">// DECRYPTED //</span>
+            <span className="hidden sm:inline">{'//'} DECRYPTED {'//'}</span>
             <span className="flex gap-4">
               <span>SYS.PRINT</span>
               <span className="animate-pulse">Γû╝</span>

@@ -28,6 +28,13 @@ function PerformanceClip({ file, title, poster, wide = false }: { file: string; 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    const syncMetadata = () => {
+      setDuration(Number.isFinite(video.duration) ? video.duration : 0);
+      setTime(video.currentTime);
+    };
+    video.addEventListener("loadedmetadata", syncMetadata);
+    video.addEventListener("durationchange", syncMetadata);
+    const metadataFrame = requestAnimationFrame(syncMetadata);
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let visible = false;
     const update = () => {
@@ -40,7 +47,7 @@ function PerformanceClip({ file, title, poster, wide = false }: { file: string; 
     motion.addEventListener("change", update);
     const syncFullscreen = () => setFullscreen(document.fullscreenElement === frameRef.current);
     document.addEventListener("fullscreenchange", syncFullscreen);
-    return () => { observer.disconnect(); document.removeEventListener("visibilitychange", update); motion.removeEventListener("change", update); document.removeEventListener("fullscreenchange", syncFullscreen); };
+    return () => { cancelAnimationFrame(metadataFrame); video.removeEventListener("loadedmetadata", syncMetadata); video.removeEventListener("durationchange", syncMetadata); observer.disconnect(); document.removeEventListener("visibilitychange", update); motion.removeEventListener("change", update); document.removeEventListener("fullscreenchange", syncFullscreen); };
   }, []);
 
   async function togglePlay() {

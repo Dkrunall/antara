@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import Clock from "@/components/Clock";
 
@@ -11,8 +12,8 @@ export default function About() {
                 <header className="flex flex-col border-b border-foreground">
                     <div className="flex justify-between items-center px-4 py-1 text-[10px] uppercase tracking-widest border-b border-foreground whitespace-nowrap overflow-hidden">
                         <span>[ 014 ]</span>
-                        <span className="hidden sm:inline-block">// AUDIO SIGNAL: CLEAR //</span>
-                        <span className="inline-block sm:hidden">// SIGNAL: OK //</span>
+                        <span className="hidden sm:inline-block">{'//'} AUDIO SIGNAL: CLEAR {'//'}</span>
+                        <span className="inline-block sm:hidden">{'//'} SIGNAL: OK {'//'}</span>
                         <Clock />
                     </div>
                     <div className="py-4 flex justify-center border-b border-foreground bg-dark-surface relative overflow-hidden">
@@ -28,7 +29,7 @@ export default function About() {
                     </div>
                     <div className="flex flex-col sm:flex-row justify-between items-center px-4 py-3 sm:py-2 text-[10px] uppercase border-b border-foreground bg-background gap-3 sm:gap-0">
                         <span className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                            <a href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</a>
+                            <Link href="/" className="hover:text-[#c8d4b8] transition-colors">● HOME</Link>
                             <span className="text-foreground/50 cursor-default">● ABOUT</span>
                             <a href="/venues" className="hover:text-[#c8d4b8] transition-colors">● VENUES</a>
                             <a href="/press" className="hover:text-[#c8d4b8] transition-colors">● ASSETS</a>
@@ -120,14 +121,14 @@ export default function About() {
                                 <div className="w-full border-t border-foreground opacity-10"></div>
                                 <p>
                                     <strong className="text-[#c8d4b8] opacity-100 block mb-2 font-display tracking-widest text-lg">She Owns the Stage</strong>
-                                    A true stage presence, she exudes passion, creating a lively and vibrant atmosphere. The deck is not just a tool; it's a command center for shaping audio realities.
+                                    A true stage presence, she exudes passion, creating a lively and vibrant atmosphere. The deck is not just a tool; it&apos;s a command center for shaping audio realities.
                                 </p>
                             </div>
 
                             {/* TECHNICAL DATA BLOCK */}
                             <div className="mt-auto pt-8 border-t border-foreground bg-background/50 p-6 backdrop-blur-md">
                                 <div className="flex justify-between items-center border-b border-foreground/50 pb-2 mb-4">
-                                    <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">GEAR.SETUP // LIVE</span>
+                                    <span className="text-[10px] tracking-widest uppercase font-bold text-foreground">GEAR.SETUP {'//'} LIVE</span>
                                     <span className="text-[10px] animate-pulse text-foreground/70">SYNC</span>
                                 </div>
                                 <ul className="text-[10px] uppercase font-bold opacity-70 space-y-2">
@@ -139,7 +140,7 @@ export default function About() {
                             </div>
 
                             <p className="text-xs md:text-sm leading-relaxed uppercase italic opacity-60 mt-12 border-l-4 border-foreground pl-4 font-bold tracking-wider">
-                                "Elevating the scene and connecting with audiences around the world. No boundaries. Just Sound."
+                                &quot;Elevating the scene and connecting with audiences around the world. No boundaries. Just Sound.&quot;
                             </p>
 
                         </div>
@@ -150,7 +151,7 @@ export default function About() {
                 <section className="flex flex-col border-b border-foreground bg-dark-surface">
 
                     <div className="flex justify-between items-center px-4 py-2 text-[10px] uppercase tracking-widest border-b border-foreground whitespace-nowrap overflow-hidden bg-background">
-                        <span>// ARCHIVE //</span>
+                        <span>{'//'} ARCHIVE {'//'}</span>
                         <span>VISUAL.LOG.014</span>
                     </div>
 
@@ -158,7 +159,7 @@ export default function About() {
 
                         {/* Extended Text Block */}
                         <div className="p-8 font-mono border-b sm:border-b-0 sm:border-r border-foreground flex flex-col justify-center bg-background/50">
-                            <h2 className="font-display text-2xl uppercase tracking-widest font-bold mb-4 underline decoration-foreground/30 underline-offset-4">
+                            <h2 className="font-display text-xl xl:text-2xl uppercase tracking-normal font-bold mb-4 break-words underline decoration-foreground/30 underline-offset-4">
                                 The Breakthrough
                             </h2>
                             <div className="text-[10px] leading-relaxed uppercase opacity-80 space-y-4">
@@ -166,7 +167,7 @@ export default function About() {
                                     Transitioning from underground warehouse raves to headlining established venues required a shift in both sound and stamina.
                                 </p>
                                 <p>
-                                    Antara's sets became known for their relentless forward momentum—eschewing traditional drops for a continuous, hypnotic build that locks the dancefloor into a collective trance.
+                                    Antara&apos;s sets became known for their relentless forward momentum—eschewing traditional drops for a continuous, hypnotic build that locks the dancefloor into a collective trance.
                                 </p>
                                 <p className="pt-4 border-t border-foreground text-[#c8d4b8] mt-auto font-bold opacity-100">
                                     <span className="animate-pulse mr-2">▶</span> CURRENT STATUS: TOURING
@@ -213,7 +214,7 @@ export default function About() {
                     <div className="absolute inset-0 z-10 border-[0.5px] border-foreground/30 m-6 sm:m-12 rounded-[60px] pointer-events-none mix-blend-overlay"></div>
 
                     <div className="z-20 font-display text-2xl md:text-5xl font-bold uppercase tracking-widest text-[#d8e3ce] drop-shadow-[0_0_15px_rgba(216,227,206,0.5)] border-y border-current py-6 px-12 bg-background/40 backdrop-blur-sm">
-                        GLOBAL BROADCAST // LIVE & DIRECT
+                        GLOBAL BROADCAST {'//'} LIVE & DIRECT
                     </div>
                 </section>
 
@@ -221,7 +222,7 @@ export default function About() {
                 <footer className="flex flex-col bg-dark-surface">
                     <div className="flex justify-between items-center px-4 py-2 text-[8px] uppercase border-b border-foreground whitespace-nowrap overflow-hidden tracking-widest">
                         <span>[X] SYS_DATA OK</span>
-                        <span className="hidden sm:inline">// DECRYPTED //</span>
+                        <span className="hidden sm:inline">{'//'} DECRYPTED {'//'}</span>
                         <span className="flex gap-4">
                             <span>SYS.PRINT</span>
                             <span className="animate-pulse">▼</span>
