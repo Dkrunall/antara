@@ -30,7 +30,7 @@ export default function HeroVideo() {
   }, []);
   return <>
     <div className="hero-spotlight absolute inset-0 z-10 pointer-events-none" aria-hidden="true" />
-    <video ref={ref} src="/antara-hero.mp4" poster="/new/PAN08900.jpg" muted loop playsInline onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} className="object-cover absolute inset-0 z-0 w-full h-full grayscale contrast-125 brightness-[60%] mix-blend-screen object-top" />
+    <video ref={ref} src="/antara-hero.mp4" poster="/media/hero-poster.webp" muted loop playsInline onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} className="object-cover absolute inset-0 z-0 w-full h-full object-center" />
     <Magnetic className="absolute top-4 left-4 z-20">
       <button type="button" onClick={() => { if (ref.current?.paused) void ref.current.play().catch(() => {}); else ref.current?.pause(); }} className="console-button console-button-outline">{playing ? <Pause size={16} aria-hidden="true" /> : <Play size={16} aria-hidden="true" />}<span>{playing ? "Pause video" : "Play video"}</span></button>
     </Magnetic>
